@@ -1,6 +1,9 @@
+#! /usr/bin/env python
+
 import json
 import tweepy
 from optparse import OptionParser
+import os
 
 def prettyLimits(user,oauthkeys,excludeFull):
     auth = tweepy.OAuthHandler(oauthkeys[user]['consumer_key'], oauthkeys[user]['consumer_secret'])
@@ -25,7 +28,7 @@ parser.add_option("-f", "--full",action="store_true",dest="fl",default=False,hel
 
 (options, args) = parser.parse_args()
 
-f = file("users.json","r").read()
+f = file(os.path.join(os.path.dirname(os.path.realpath(__file__)),"users.json"),"r").read()
 oauthDir = json.loads(f)
 
 if (options.lst):
